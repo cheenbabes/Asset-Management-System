@@ -1,0 +1,19 @@
+The following is a list of damage statuses for assets. In order to maintain
+internal consistency, the items on this list should be used to populate the
+damage_loss_theft columns of the assets and assets_events tables, as well as
+the note_category column of asset_notes. Additionally, this list of values
+should be used for any part of the application that reads from or writes to
+the above mentioned columns as certain parts of the app will read these values
+and take action based on the result.
+
+Damage Status Values:
+
+none
+Damage: 1
+Damage: 2
+Damage: 3
+Damage: 4
+Damage: 5
+Lost
+Stolen
+

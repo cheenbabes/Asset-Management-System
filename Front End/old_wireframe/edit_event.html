@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <title>Outdoor Outfitters</title>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://imsky.github.com/holder/holder.js"></script>
+        <script type="text/javascript">
+                    $(window).load(function () {
+                        $('#editEventModal').modal('show');
+                    });
+                </script>
+    
+</head>
+
+<body>
+
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user" placeholder="User">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="location" placeholder="Location">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">Size</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="size" placeholder="How many are in your party">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">StartDate</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="startDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="endDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='login_home.html'">Edit Event</button>
+                </div>
+            </div>
+        </form>
+
+
+    </body>
+
+</html>

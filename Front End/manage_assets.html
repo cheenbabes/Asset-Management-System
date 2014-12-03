@@ -1,0 +1,412 @@
+<html lang="en">
+
+<head>
+    <title>Outdoor Outfitters</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="bootstrapvalidator-0.5.2/dist/css/bootstrapValidator.min.css"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="bootstrapvalidator-0.5.2/dist/js/bootstrapValidator.min.js" type="text/javascript"></script>
+    <script src="js/validateAddEditAsset.js" type="text/javascript"></script>
+
+    <script src="http://imsky.github.com/holder/holder.js"></script>
+
+
+    
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="text-center">
+                <a href="admin_home.html"><img src="img/Meadow-Of-Flowers-1080x1920.jpg" alt="" /></a>
+                <br>
+            </div>
+        </div>
+        
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="#events" class="dropdown-toggle" data-toggle="dropdown">Events<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addEventModal" role="button" data-toggle="modal">Create</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a onclick="window.location.href='admin_view_all_events.html'" role="button" >View All Events</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#assets" class="dropdown-toggle" data-toggle="dropdown">Assets <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addAssetModal" role="button" data-toggle="modal">Add</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="checkInAsset.html" role="button" data-toggle="modal">Check-in</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li class="dropdown">
+                        <a href="#users" class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addUserModal" role="button" data-toggle="modal">Add</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a onclick="window.location.href='admin_display_users.html'">View All Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">Signed in as Eugene</p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#account" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="signin">Sign In</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#manageMyEventsModal" role="button" data-toggle="modal">View My Events</a>
+                            </li>
+                            <li class="disabled"><a href="#">Manage My Account</a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#"></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a href="#">Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
+
+        
+        
+                        
+
+        <div class="row" style="padding: 0px; margin: 0px">
+            
+                    <div class="col-md-3">
+                <form role="form">
+                    <div class="form-group">
+                        <select name="selectCategory" class="form-control">
+                            <option value="option1">Search By Category</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </div>
+                <div class="form-group">
+                    <input type="submit" value="Search" class="form-control"/>
+                </div>
+            </form>
+            </div>
+            <div class="col-md-3">
+                <form role="form">
+                    <div class="form-group">
+                        <select name="selectAssetType" class="form-control">
+                            <option value="option1">Search By Asset Type</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </div>
+                    
+                <div class="form-group">
+                    <input type="submit" value="Search" class="form-control"/>
+                </div>
+            </form>
+                </div>
+            <div class="col-md-3">
+            <form role="form">
+                <div class="form-group"> 
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-plus">
+                    <label>Add New Category:</label></span></span><input type="text" class="form-control" style="float: right"/><br/><br/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="form-control" value="Add Category"/>
+                </div> 
+            </form>
+            </div>           
+            <div class="col-md-3">
+                
+            <form role="form">
+                <div class="form-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-plus">
+                    <label>Add New Asset Type:</label></span></span><input type="text" class="form-control" style="float: right"/><br/><br/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="form-control" value="Add Asset Type"/>
+                </div>
+            </form>
+            </div> 
+
+     
+            
+            </div>
+        
+        <div class="row" style="padding: 0px; margin: 0px; padding-bottom: 20px">
+            <div class="col-md-2">
+                <a class="btn btn-primary glyphicon glyphicon-plus" href="add_asset.html">Add Asset</a>
+            </div>
+        </div>
+    
+        
+
+                <div class="col-md-12">
+            <table class="table table-hover">
+                
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Asset Type</th>
+                    <th>Satus</th>
+                    <th>Serial Number</th>
+                    <th>Damage</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+
+                <tr>
+                    <td><img class="image-responsive" src="img/asset/placeholder.jpg" alt="..."></td>
+                    <td>Super-Duper Tent</td>
+                    <td>Tent</td>
+                    <td>2-Person</td>
+                    <td>In Store</td>
+                    <td>xyz-123</td>
+                    <td>Slight</td>
+                    <td>Small rip in door- damage from use- non intentional</td>
+                    <td><a href="edit_asset.html" class="btn btn-warning">Edit</a><br/><br/><a href="deleteAsset" class="btn btn-danger">Delete</a><br/><br/>
+                    <a href="#assetAddNote" class="btn btn-success glyphicon glyphicon-plus" data-toggle="modal">Add Note</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Mud tracked all inside. Now infested with BEES?!</td>
+                </tr>
+
+               
+                <tr>
+                    <td><img class="image-responsive" src="img/asset/placeholder.jpg" alt="..."></td>
+                    <td>Super-Duper Tent</td>
+                    <td>Tent</td>
+                    <td>2-Person</td>
+                    <td>In Store</td>
+                    <td>xyz-123</td>
+                    <td>Slight</td>
+                    <td>Small rip in door- damage from use- non intentional</td>
+                    <td><a href="edit_asset.html" class="btn btn-warning">Edit</a><br/><br/><a href="deleteAsset" class="btn btn-danger">Delete</a><br/><br/>
+                    <a href="#assetAddNote" class="btn btn-success glyphicon glyphicon-plus" data-toggle="modal">Add Note</a></td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Mud tracked all inside. Now infested with BEES?!</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>This is a 3<sup>rd</sup> note</td>
+                </tr>
+               
+                
+                
+                <tr>
+                    <td><img class="image-responsive" src="img/asset/placeholder.jpg" alt="..."></td>
+                    <td>Super-Duper Tent</td>
+                    <td>Tent</td>
+                    <td>2-Person</td>
+                    <td>In Store</td>
+                    <td>xyz-123</td>
+                    <td>Slight</td>
+                    <td>Small rip in door- damage from use- non intentional</td>
+                    <td><a href="edit_asset.html" class="btn btn-warning">Edit</a><br/><br/><a href="deleteAsset" class="btn btn-danger">Delete</a><br/><br/>
+                    <a href="#assetAddNote" class="btn btn-success glyphicon glyphicon-plus" data-toggle="modal">Add Note</a></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Mud tracked all inside. Now infested with BEES?!</td>
+                </tr>
+                    
+            </table>
+                </div>
+
+
+        
+        <a href="admin_home.html" class="btn btn-primary glyphicon glyphicon-chevron-home">Home</a><br/><br/>
+        
+        
+        
+        
+
+        <br>
+        <div class="panel panel-info">
+            <div class="text-center">
+               <h6>Created By: Grey Team 2014<br>
+                        Powered By Java and Bootstrap</h6> 
+            </div>
+
+        </div>
+
+    </div>
+    
+<!--    Edit Asset Modal-->
+<div class="addEditAsset modal fade" id="editAssetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Asset</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>Tents</option>
+                        <option>Sleeping Bag</option>
+                        <option>Fishing Pole</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Asset Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>1-Person Tent</option>
+                        <option>2-Person Tent</option>
+                        <option>3-Person Tent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>Available</option>
+                        <option>Checked-Out</option>
+                        <option>Lost</option>
+                        <option>Stolen</option>
+                        <option>Late</option>
+                        <option>Retired</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Serial #</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="serialNum" placeholder="Scan Serial Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="image" placeholder="Confirm your password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Damage</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="damage">
+                        <option>none</option>
+                        <option>small</option>
+                        <option>medium</option>
+                        <option>large</option>
+                        <option>obliterated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Note</label>
+                <div class="col-sm-10">
+                    <textArea type="text" class="form-control" id="note" name="assetNote">Enter Note Here</textArea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='login_home.html'">Update Asset</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"           onclick="window.location.href='manage_assets.html'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <!--    Asset Add Note Modal-->
+<div class="modal fade" id="assetAddNote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Note</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Note</label>
+                <div class="col-sm-10">
+                    <textArea type="text" class="form-control" id="note" name="assetNote">Enter Note Here</textArea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='login_home.html'">Update Asset</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"           onclick="window.location.href='manage_assets.html'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+   
+</body>
+
+</html>

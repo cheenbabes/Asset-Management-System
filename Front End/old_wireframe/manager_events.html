@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+    <title>Outdoor Outfitters</title>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="http://imsky.github.com/holder/holder.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="text-center">
+                <a href="login_home.html"><img src="img/Meadow-Of-Flowers-1080x1920.jpg" alt="" /></a>
+                <br>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="#events" class="dropdown-toggle" data-toggle="dropdown">Events<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="newEvent.html">Create</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="manager_events.html" role="button" data-toggle="modal">View All Events</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#assets" class="dropdown-toggle" data-toggle="dropdown">Assets <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="addNewAsset.html">Add</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="checkInAsset.html" role="button" data-toggle="modal">Check-in</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">Signed in as Eugene</p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#account" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="signin">Sign In</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#contact" role="button" data-toggle="modal">View My Events</a>
+                            </li>
+                            <li class="disabled"><a href="#">Manage My Account</a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#"></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a href="#">Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <table class="table table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>Event Name</th>
+                    <th>Location</th>
+                    <th>User</th>
+                    <th>Size</th>
+                    <th>Actions</th>
+                    <th>Date Begin</th>
+                    <th>Date End</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Camping Trip</td>
+                    <td>Yosemite, CA</td>
+                    <td>Eugene</td>
+                    <td>5</td>
+                    <td>10-12-2014</td>
+                    <td>10-15-2014</td>
+                    <td><a href="edit_event_modal.html">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mountaneering</td>
+                    <td>Fairbanks, AK</td>
+                    <td>Sean</td>
+                    <td>3</td>
+                    <td>10-28-2014</td>
+                    <td>11-3-2014</td>
+                    <td><a href="edit_event_modal.html">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+
+            </table>
+        </div>
+        <br>
+        <div class="panel panel-info">
+            <div class="text-center">
+                <h6>Created By: Eugene Baibourine 2014<br>
+                        Powered By Java and Bootstrap</h6> 
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

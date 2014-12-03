@@ -1,0 +1,111 @@
+<!-- #1 - Spring Security XML namespace configuration -->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/security
+  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+   
+    <!-- No authorization needed 
+    <http pattern="/" security="none" />
+    <http pattern="/home" security="none" />
+    <http pattern="/index" security="none" />
+    <http pattern="/login" security="none" />
+    <http pattern="/error" security="none" />
+    <http pattern="/assets" security="none" />
+    -->
+    
+    <!-- Unblock css and images to display formatting when not logged in -->
+    <http pattern="/css" security="none" />
+    
+    <!-- #3 - Authentication/login form and protected endpoint configuration --> 
+    <http auto-config="true" use-expressions="false">
+        <!-- #3a - Login via html form, use Spring to do the security check --> 
+        <!-- #3b - Use the login page at this endpoint --> 
+        <!-- #3c - Redirect here if login fails --> 
+        <form-login login-processing-url="/j_spring_security_check"
+                    login-page="/login"
+                    authentication-failure-url="/login?login_error=1"/>
+        <!-- #3d - Go back to login page when user logs out -->
+        <logout logout-success-url="/" />
+        
+        <!-- Access to endpoints requiring anonomous authentication -->
+        <!-- NOTE: Requiring some authentication is necessary to display username on pages that do not require a secific log-in -->
+        <intercept-url pattern="/" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/home" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/index" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/error" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/assets" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        
+        <!-- Access to endpoints requiring admin role -->
+        <intercept-url pattern="/viewAllUsers" access="ROLE_ADMIN" />
+        <intercept-url pattern="/addUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/submitNewUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/viewUserInfo" access="ROLE_ADMIN" />
+        <intercept-url pattern="/editUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/submitEditUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/addUserNote" access="ROLE_ADMIN" />
+        <intercept-url pattern="/submitNewUserNote" access="ROLE_ADMIN" />
+        <intercept-url pattern="/deleteUser" access="ROLE_ADMIN" />
+        <intercept-url pattern="/reports" access="ROLE_ADMIN" />
+        
+        <!-- Access to endpoints requring manager role -->
+        <intercept-url pattern="/fileUploadForm" access="ROLE_MANAGER" />
+        <intercept-url pattern="/uploadFile" access="ROLE_MANAGER" />
+        <intercept-url pattern="/manage_assets" access="ROLE_MANAGER" />
+        <intercept-url pattern="/listAssets" access="ROLE_MANAGER" />
+        <intercept-url pattern="/listAssetNotes" access="ROLE_MANAGER" />
+        <intercept-url pattern="/addAsset" access="ROLE_MANAGER" />
+        <intercept-url pattern="/updateAsset" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitNewAsset" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitAssetUpdate" access="ROLE_MANAGER" />
+        <intercept-url pattern="/removeAsset" access="ROLE_MANAGER" />
+        <intercept-url pattern="/addAssetType" access="ROLE_MANAGER" />
+        <intercept-url pattern="/updateAssetType" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitNewAssetType" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitAssetTypeUpdate" access="ROLE_MANAGER" />
+        <intercept-url pattern="/removeAssetType" access="ROLE_MANAGER" />
+        <intercept-url pattern="/updateCategory" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitNewCategory" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitCategoryUpdate" access="ROLE_MANAGER" />
+        <intercept-url pattern="/removeCategory" access="ROLE_MANAGER" />
+        <intercept-url pattern="/assetAddNote" access="ROLE_MANAGER" />
+        <intercept-url pattern="/submitNewAssetNote" access="ROLE_MANAGER" />
+        
+        <!-- Access to endpoints requiring retail role -->
+        <intercept-url pattern="/addEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/submitEventStepOne" access="ROLE_RETAIL" />
+        <intercept-url pattern="/addEventAsset" access="ROLE_RETAIL" />
+        <intercept-url pattern="/removeAssetFromEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/closeEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/openEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/eventAddNote" access="ROLE_RETAIL" />
+        <intercept-url pattern="/submitNewEventNote" access="ROLE_RETAIL" />
+        <intercept-url pattern="/editEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/submitEditEvent" access="ROLE_RETAIL" />
+        <intercept-url pattern="/checkInAsset" access="ROLE_RETAIL" />
+        
+        <!-- Access to endpoints requiring user role -->
+        <intercept-url pattern="/viewEventInfo" access="ROLE_USER" />
+
+    </http>
+    <!-- #4 - Authentication Manager config -->
+    <authentication-manager>
+        <!-- #4a - Authentication Provider - we’re using the JDBC service -->
+        <authentication-provider>
+            <!-- #4b - Tells Spring Security where to look for user information -->
+            <!--       We use the dataSource defined in spring-persistence.xml  --> 
+            <!--       and we give Spring Security the query to use to lookup   --> 
+            <!--       the user’s credentials (get the password from the users  --> 
+            <!--       tables and get the roles from the authorities table)     -->
+            <jdbc-user-service id="userService"
+                               data-source-ref="dataSource"
+                               users-by-username-query=
+          "select username, password, enabled from users where username=?"
+                               authorities-by-username-query=
+          "select username, authority from authorities where username=?" />
+        </authentication-provider>
+    </authentication-manager>
+</beans:beans>

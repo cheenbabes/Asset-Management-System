@@ -1,0 +1,762 @@
+<html lang="en">
+
+<head>
+    <title>Outdoor Outfitters</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="bootstrapvalidator-0.5.2/dist/css/bootstrapValidator.min.css"/>
+    
+
+   
+    
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="ui-bootstrap-tpls-0.11.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js" type="text/javascript"></script>
+    <script src="http://imsky.github.com/holder/holder.js"></script>
+    <script src="app.js" type="text/javascript"></script>
+	<script src="maincontroller.js" type="text/javascript"></script>
+
+
+    
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <div class="text-center">
+                <a href="admin_home.html"><img src="img/Meadow-Of-Flowers-1080x1920.jpg" alt="" /></a>
+                <br>
+            </div>
+        </div>
+        
+        BEGIN TEST
+        
+        
+        
+        <div id='content' ng-app='MyTutorialApp' ng-controller='MainController'>
+      <input type='text' ng-model='searchText' />
+        <ul>
+            <li ng-repeat='person in people | filter:searchText' ng-show='person.live == true'>#{{person.id}} {{person.name}}</li>
+        </ul>
+        <input type='text' ng-model='newPerson' />
+        <button ng-click='addNew()'>Add</button>
+        </div>
+        
+        
+        
+    
+        
+<!--
+        <div ng-controller="AccordionDemoCtrl">
+  <p>
+    <button class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+    <button class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+  </p>
+
+  <label class="checkbox">
+    <input type="checkbox" ng-model="oneAtATime">
+    Open only one at a time
+  </label>
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+      This content is straight in the template.
+    </accordion-group>
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+      {{group.content}}
+    </accordion-group>
+    <accordion-group heading="Dynamic Body Content">
+      <p>The body of the accordion group grows to fit the contents</p>
+        <button class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+        <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+    <accordion-group is-open="status.open">
+        <accordion-heading>
+            I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+        </accordion-heading>
+        This is just some content to illustrate fancy headings.
+    </accordion-group>
+  </accordion>
+</div>
+        
+-->
+
+
+        
+<!--        END TEST-->
+        
+        <nav class="navbar navbar-default" role="navigation">
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="#events" class="dropdown-toggle" data-toggle="dropdown">Events<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addEventModal" role="button" data-toggle="modal">Create</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a onclick="window.location.href='admin_view_all_events.html'" role="button" >View All Events</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#assets" class="dropdown-toggle" data-toggle="dropdown">Assets <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addAssetModal" role="button" data-toggle="modal">Add</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="checkInAsset.html" role="button" data-toggle="modal">Check-in</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li class="dropdown">
+                        <a href="#users" class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#addUserModal" role="button" data-toggle="modal">Add</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a onclick="window.location.href='admin_display_users.html'">View All Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">Signed in as Eugene</p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#account" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="signin">Sign In</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#manageMyEventsModal" role="button" data-toggle="modal">View My Events</a>
+                            </li>
+                            <li class="disabled"><a href="#">Manage My Account</a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#"></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a href="#">Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <img class="img-responsive" data-src="holder.js/242x200" alt="...">
+                    <!--add the generated img tag here-->
+                    <div class="caption">
+                        <h4><span id="title-${movie.movieID}">One Person Tent</span> </h4>
+
+                        <p>                        
+                            <br><b>Category:</b> <span id="director-${movie.movieID}">Tents</span>
+                            <br><b>Brand:</b> <span id="studio-${movie.movieID}">Campbell</span>
+                            <br>
+                        </p>
+                        <a href="#viewAssetInfoModal" class="btn btn-warning" role="button" data-toggle="modal">Additional Info</a><br/>
+                        <a href="#editAssetModal" class="btn btn-primary" role="button" data-toggle="modal">Edit</a>  <a href="deleteAsset" class="btn btn-danger" role="button" data-toggle="modal">Delete</a>
+                        <a href="#checkOutModal" class="btn btn-primary" role="button" data-toggle="modal">Check Out</a>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <img class="img-responsive" data-src="holder.js/242x200" alt="...">
+                    <!--add the generated img tag here-->
+                    <div class="caption">
+                        <h4><span id="title-${movie.movieID}">Fishing Pole</span> </h4>
+
+                        <p>                        
+                            <br><b>Category:</b> <span id="director-${movie.movieID}">Fishing</span>
+                            <br><b>Brand:</b> <span id="studio-${movie.movieID}">REI</span>
+                            <br>
+                        </p>
+                        <a href="#viewAssetInfoModal" class="btn btn-warning" role="button" data-toggle="modal">Additional Info</a><br/>
+                        <a href="#editAssetModal" class="btn btn-primary" role="button" data-toggle="modal">Edit</a>  <a href="deleteAsset" class="btn btn-danger" role="button" data-toggle="modal">Delete</a>
+                        <a href="#checkOutModal" class="btn btn-primary" role="button" data-toggle="modal">Check Out</a>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <img class="img-responsive" data-src="holder.js/242x200" alt="...">
+                    <!--add the generated img tag here-->
+                    <div class="caption">
+                        <h4><span id="title-${movie.movieID}">Sleeping Bag</span> </h4>
+
+                        <p>                        
+                            <br><b>Category:</b> <span id="director-${movie.movieID}">Sleeping Bags</span>
+                            <br><b>Brand:</b> <span id="studio-${movie.movieID}">Marmot</span>
+                            <br>
+                        </p>
+                        <a href="#viewAssetInfoModal" class="btn btn-warning" role="button" data-toggle="modal">Additional Info</a><br/>
+                        <a href="#editAssetModal" class="btn btn-primary" role="button" data-toggle="modal">Edit</a>  <a href="deleteAsset" class="btn btn-danger" role="button" data-toggle="modal">Delete</a>
+                        <a href="#checkOutModal" class="btn btn-primary" role="button" data-toggle="modal">Check Out</a>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="thumbnail">
+                    <img class="img-responsive" data-src="holder.js/242x200" alt="...">
+                    <!--add the generated img tag here-->
+                    <div class="caption">
+                        <h4><span id="title-${movie.movieID}">Sleeping Bag Liner</span> </h4>
+
+                        <p>                        
+                            <br><b>Category:</b> <span id="director-${movie.movieID}">Sleeping Bags</span>
+                            <br><b>Brand:</b> <span id="studio-${movie.movieID}">REI</span>
+                            <br>
+                        </p>
+                        <a href="#viewAssetInfoModal" class="btn btn-warning" role="button" data-toggle="modal">Additional Info</a><br/>
+                        <a href="#editAssetModal" class="btn btn-primary" role="button" data-toggle="modal">Edit</a>  <a href="deleteAsset" class="btn btn-danger" role="button" data-toggle="modal">Delete</a>
+                        <a href="#checkOutModal" class="btn btn-primary" role="button" data-toggle="modal">Check Out</a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!--row-->
+
+        <br>
+        <div class="panel panel-info">
+            <div class="text-center">
+                <h6>Created By: Eugene Baibourine 2014<br>
+                        Powered By Java and Bootstrap</h6> 
+            </div>
+
+        </div>
+
+    </div>
+    
+    
+    
+    <!--Add Event Modal-->
+    <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user" placeholder="User">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="location" placeholder="Location">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">Size</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="size" placeholder="How many are in your party">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">StartDate</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="startDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="endDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='admin_home.html'">Create New Event</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+       <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!--    Manage My Events Modal-->
+    <div class="modal fade" id="manageMyEventsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Manage My Event</h4>
+      </div>
+      <div class="modal-body">
+       <div class="container">
+           <div class="col-md-8">
+            <table class="table table-hover">
+                
+                <tr>
+                    <th>#</th>
+                    <th>Event Name</th>
+                    <th>Location</th>
+                    <th>User</th>
+                    <th>Size</th>
+                    <th>Date Begin</th>
+                    <th>Date End</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Camping Trip</td>
+                    <td>Yosemite, CA</td>
+                    <td>Eugene</td>
+                    <td>5</td>
+                    <td>10-12-2014</td>
+                    <td>10-15-2014</td>
+                    <td><a href="#editEventModal">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mountaneering</td>
+                    <td>Fairbanks, AK</td>
+                    <td>Sean</td>
+                    <td>3</td>
+                    <td>10-28-2014</td>
+                    <td>11-3-2014</td>
+                    <td><a href="#editEventModal">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+                    
+            </table>
+                </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!--    Add asset Modal-->
+    <div class="modal fade" id="addAssetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Asset</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal registerForm" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="assetName" name="assetName" placeholder="Name"
+
+                             data-bv-notempty="true"
+                                data-bv-notempty-message="The asset's name is required and cannot be empty"
+
+                                data-bv-stringlength="true"
+                                data-bv-stringlength-min="3"
+                                data-bv-stringlength-max="30"
+                                data-bv-stringlength-message="The asset's name must be more than 3 and less than 30 characters long"
+
+                                data-bv-regexp="true"
+                                data-bv-regexp-regexp="^[a-zA-Z0-9]+$"
+                                data-bv-regexp-message="The username can only consist of alphabetical and number" />
+
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>Tents</option>
+                        <option>Sleeping Bag</option>
+                        <option>Fishing Pole</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Brand</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="brand" placeholder="Brand">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Serial #</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="serialNum" placeholder="Scan Serial Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="image" placeholder="Confirm your password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='admin_home.html'">Add New Asset</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!--    View All Events Modal-->
+    
+     <div class="modal fade" id="viewAllEventsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">All Events</h4>
+      </div>
+      <div class="modal-body">
+       <div class="container">
+           <div class="col-md-8">
+            <table class="table table-hover">
+                
+                <tr>
+                    <th>#</th>
+                    <th>Event Name</th>
+                    <th>Location</th>
+                    <th>User</th>
+                    <th>Size</th>
+                    <th>Date Begin</th>
+                    <th>Date End</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Camping Trip</td>
+                    <td>Yosemite, CA</td>
+                    <td>Eugene</td>
+                    <td>5</td>
+                    <td>10-12-2014</td>
+                    <td>10-15-2014</td>
+                    <td><a href="#editEventModal">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mountaneering</td>
+                    <td>Fairbanks, AK</td>
+                    <td>Sean</td>
+                    <td>3</td>
+                    <td>10-28-2014</td>
+                    <td>11-3-2014</td>
+                    <td><a href="#editEventModal">Edit</a> | <a href="deleteEvent">Delete</a></td>
+                </tr>
+                    
+            </table>
+                </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!--Add User Modal-->
+    
+   
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add User</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user" placeholder="Username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="location" placeholder="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Standing</label>
+                <div class="col-sm-10">
+                    <select name="standing">
+                        <option value="good">Good</option>
+                        <option value="bad">Bad</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"           onclick="window.location.href='admin_home.html'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+        
+<!--    View Asset Info Modal-->
+
+   
+<div class="modal fade" id="viewAssetInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Manage My Event</h4>
+      </div>
+      <div class="modal-body">
+       <div class="container">
+           <div class="col-md-8">
+            <table class="table table-hover">
+                
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>In Stock</th>
+                    <th>Serial Number</th>
+                    <th>Condition</th>
+                </tr>
+                <tr>
+                    <td>Deluxe Camper Tent</td>
+                    <td>5-person all-weather all-terrain tent</td>
+                    <td>Tent</td>
+                    <td>Shelter</td>
+                    <td>Yes</td>
+                    <td>xcd-5436</td>
+                    <td>Like New</td>
+                </tr>
+                    
+            </table>
+                </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <!--    Edit Event Modal-->
+    
+    <div class="modal fade" id="editEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user" placeholder="User">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="location" placeholder="Location">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inout" class="col-sm-2 control-label">Size</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="size" placeholder="How many are in your party">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">StartDate</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="startDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="endDate" placeholder="Enter Date (datepicker)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='admin_home.html'">Edit Event</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='admin_home.html'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <!--    Edit Asset Modal-->
+    
+    
+<div class="modal fade" id="editAssetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Asset</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" id="editAssetForm">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-validation="length alphanumeric" 
+		 data-validation-length="3-12" data-validation-error-msg="The user name has to be an alphanumeric value between 3-12 characters">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>Tents</option>
+                        <option>Sleeping Bag</option>
+                        <option>Fishing Pole</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Brand</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="brand" placeholder="Brand">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Serial #</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="serialNum" placeholder="Scan Serial Number">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="image" placeholder="Confirm your password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='admin_home.html'">Edit Asset</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+<!--    Check Out Modal-->
+    
+    <div class="modal fade" id="checkOutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Check Out Asset</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>User 1</option>
+                        <option>User 2</option>
+                        <option>User 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Event</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>Event 1</option>
+                        <option>Event 2</option>
+                        <option>Event 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input" class="col-sm-2 control-label">Due Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="dueDate" placeholder="Date due">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" onclick="window.location.href='admin_home.html'">Check Out Asset</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+   
+</body>
+
+</html>
